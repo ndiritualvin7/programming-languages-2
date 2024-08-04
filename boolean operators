@@ -1,0 +1,43 @@
+include <stdio.h>
+
+// Function to perform the AND operation
+int AND(int a, int b) {
+    return (a && b);
+}
+
+// Function to perform the OR operation
+int OR(int a, int b) {
+    return (a || b);
+}
+
+// Function to perform the NOT operation
+int NOT(int a) {
+    return (!a);
+}
+
+// Function to perform the XOR operation
+int XOR(int a, int b) {
+    return ((a && !b) || (!a && b));
+}
+
+// Function to perform the NAND operation
+int NAND(int a, int b) {
+    return !(a && b);
+}
+
+int NOR(int a, int b) {
+    return !(a || b);
+}
+
+int main() {
+    int a = 1, b = 0;
+
+    printf("AND(%d, %d) = %d\n", a, b, AND(a, b));
+    printf("OR(%d, %d) = %d\n", a, b, OR(a, b));
+    printf("NOT(%d) = %d\n", a, NOT(a));
+    printf("XOR(%d, %d) = %d\n", a, b, XOR(a, b));
+    printf("NAND(%d, %d) = %d\n", a, b, NAND(a, b));
+    printf("NOR(%d, %d) = %d\n", a, b, NOR(a, b));
+
+    return 0;
+}
