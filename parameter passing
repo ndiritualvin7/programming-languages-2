@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Function to demonstrate immutability (passing by value)
+void demonstrate_immutable(int value) {
+    printf("Inside function before change: %d\n", value);
+    value += 10;
+    printf("Inside function after change: %d\n", value);
+}
+
+// Function to demonstrate mutability (passing by reference)
+void demonstrate_mutable(int* mutable_list, int size) {
+    printf("Inside function before change: ");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", mutable_list[i]);
+    }
+    printf("\n");
+
+    // Append 100 to the array
+    mutable_list[size] = 100;
+    size += 1; // Update the size to reflect the new element
+
+    printf("Inside function after change: ");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", mutable_list[i]);
+    }
+    printf("\n");
+}
+
+// Function to demonstrate function references
+void demonstrate_reference() {
+    printf("Inside function\n");
+}
+
+// Function to demonstrate various features of a function (simplified for C)
+void function_features(int param1, int param2) {
+    printf("param1: %d\n", param1);
+    printf("param2: %d\n", param2);
+}
+
+int main() {
+    // Pass by value (immutable type)
+    int immutable_value = 5;
+    printf("Pass by Value:\n");
+    printf("Before function call: %d\n", immutable_value);
+    demonstrate_immutable(immutable_value);
+    printf("After function call: %d\n", immutable_value);
+    printf("----------------------------------------\n");
+
+    // Pass by reference (mutable type)
+    int mutable_list[4] = {1, 2, 3}; // Allocate an extra element for the new value
+    int size = 3; // Current size of the array
+    printf("Pass by Variable (Mutable):\n");
+    printf("Before function call: ");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", mutable_list[i]);
+    }
+    printf("\n");
+
+    demonstrate_mutable(mutable_list, size);
+    size += 1; // Update size to reflect the change in the function
+    printf("After function call: ");
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", mutable_list[i]);
+    }
+    printf("\n");
+    printf("----------------------------------------\n");
+
+    // Pass by reference
+    printf("Pass by Reference:\n");
+    void (*function_reference)() = demonstrate_reference;
+    printf("Function reference: %p\n", (void*)function_reference);
+    function_reference();
+    printf("----------------------------------------\n");
+
+    // Demonstrating various features of a function
+    printf("Function Features:\n");
+    function_features(10, 20);
+    function_features(10, 30);
+
+    return 0;
+}
